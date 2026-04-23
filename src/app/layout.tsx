@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import SideNav from "@/components/SideNav";
 
-const geistSans = GeistSans;
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 const fckSans = localFont({
   src: "./fonts/FCKSans-Bold.ttf",
@@ -12,25 +15,15 @@ const fckSans = localFont({
   weight: "700",
 });
 
-const fckText = localFont({
-  src: [
-    {
-      path: "./fonts/FCKText-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/FCKText-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-  ],
-  variable: "--font-fck-text",
+const fckSerif = localFont({
+  src: "./fonts/FCKSerif-Bold.ttf",
+  variable: "--font-fck-serif",
+  weight: "700",
 });
 
 export const metadata: Metadata = {
-  title: "KB Rapport | FCK Scouting",
-  description: "Advanced scouting and player evaluation platform for FC København",
+  title: "KB Rapport",
+  description: "KB Rapport",
 };
 
 export default function RootLayout({
@@ -39,19 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="da">
-      <body className={`${fckSans.variable} ${fckText.variable} ${geistSans.variable} font-sans antialiased text-slate-900 bg-white`}>
-        <div className="flex min-h-screen">
-          <SideNav />
-          <div className="flex-1 flex flex-col min-w-0">
-            <div className="flex flex-1 pt-10">
-              <main className="flex-1 px-8 pb-12 overflow-y-auto w-full">
-                {children}
-              </main>
-            </div>
-          </div>
-        </div>
-      </body>
+    <html lang="da" className={`${inter.variable} ${fckSans.variable} ${fckSerif.variable} font-sans`}>
+      <body>{children}</body>
     </html>
   );
 }

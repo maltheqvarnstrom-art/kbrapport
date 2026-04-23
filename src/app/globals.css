@@ -1,107 +1,470 @@
-@import "tailwindcss";
-
-@theme {
-  --font-sans: "FCK Text", var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-brand-blue: #003D88;
-  --color-brand-gray: #333333;
-  --radius-3xl: 1.5rem;
-  --radius-4xl: 2rem;
-}
-
-:root {
-  --background: #fdfaf7; /* Soft linen/beige */
-  --foreground: #2d2d2d;
-  --card: #ffffff;
-  --card-foreground: #2d2d2d;
-  --primary: #003d88;
-  --primary-foreground: #ffffff;
-  --secondary: #efe9e4;
-  --secondary-foreground: #6b6b6b;
-  --accent: #003d88;
-  --accent-foreground: #ffffff;
-  --border: #e8e1da;
-  --input: #fdfaf7;
-  --ring: #003d88;
-  --font-geist-sans: "Geist", sans-serif;
-  --font-fck-sans: "FCK Sans", sans-serif;
-  --font-fck-text: "FCK Text", sans-serif;
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: var(--font-geist-sans), var(--font-fck-text), sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  color: #1a1a1a;
   background-color: #ffffff;
-  color: #0f172a;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+a, button {
+  text-decoration: none !important;
+  color: inherit !important;
+  border: none !important;
+  background: none !important;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none !important;
+  box-shadow: none !important;
+  font-family: inherit;
 }
 
-.sprout-card {
-  background: white;
-  border-radius: 2rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Design System Typography - INTER based */
+
+.header-big {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important; /* Semi Bold */
+  letter-spacing: -0.05em !important;
+  line-height: normal;
 }
 
-.sprout-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+.menu-bold {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important; /* Semi Bold */
+  letter-spacing: -0.05em !important;
+  line-height: normal;
 }
 
-.minimal-table {
-  width: 100%;
-  border-collapse: collapse;
+.menu-regular {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important; /* Regular */
+  letter-spacing: -0.05em !important;
+  line-height: normal;
 }
 
-.minimal-table th {
-  padding: 0.5rem 1rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #334155;
-  text-align: left;
+.header-small {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important; /* Medium */
+  letter-spacing: -0.05em !important;
+  line-height: normal;
+}
+
+.brodtekst {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 400 !important; /* Regular */
+  letter-spacing: 0 !important;
+  line-height: normal;
+}
+
+.brodtekst-lille {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 400 !important; /* Regular */
+  letter-spacing: -0.05em !important;
+  line-height: normal;
+}
+
+/* Design System Typography - FCK based */
+
+.header-fck {
+  font-family: var(--font-fck-sans), sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important; /* Bold */
+  letter-spacing: 0 !important;
+  line-height: normal;
+}
+
+.brodtekst-fck {
+  font-family: var(--font-fck-serif), serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important; /* Bold */
+  letter-spacing: 0 !important;
+  line-height: normal;
+}
+
+/* ── Design System Shell ── */
+
+/* Full-page split: narrow sidebar + content */
+.ds-root {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  height: 100vh;
+  overflow: hidden;
   background: #ffffff;
-  text-transform: none;
 }
 
-.minimal-table td {
-  padding: 0.4rem 1rem;
-  border-bottom: 1px solid #f1f5f9;
-  font-size: 0.75rem;
-  color: #334155;
+/* Left sidebar — pure text links, no decoration */
+.ds-sidebar {
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-right: 1px solid #f0f0f0;
+  height: 100%;
+  overflow-y: auto;
 }
 
-.minimal-table tr:hover {
-  background-color: #f8fafc;
+.ds-nav-link {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400;
+  color: #aaaaaa !important;
+  padding: 4px 0;
+  transition: color 0.15s ease;
+  cursor: pointer;
+  line-height: 1.6;
 }
 
-/* Custom Scrollbar */
-.minimal-scrollbar::-webkit-scrollbar {
+.ds-nav-link:hover {
+  color: #1a1a1a !important;
+}
+
+.ds-nav-link.active {
+  color: #1a1a1a !important;
+  font-weight: 600;
+}
+
+/* Main content area */
+.ds-main {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 48px;
+  gap: 32px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Top bar: toggle on left, icons on right */
+.ds-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Content area below topbar */
+.ds-content {
+  flex: 1;
+}
+
+/* Elements page: nav list + icons side by side */
+.ds-elements-layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* The nav preview column */
+.ds-nav-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 280px;
+}
+
+/* Icons displayed inline */
+.ds-icons-preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+/* ── Legacy / kept classes ── */
+.section-title {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  margin-bottom: 32px !important;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Card — kept for colors/typography pages */
+.card {
+  background-color: #ffffff !important;
+  border-radius: 0 !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  width: 100%;
+}
+
+/* ── Sidebar (SideMenu component) ── */
+.sidebar-panel {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  background: #ffffff;
+  border-right: 1px solid #f0f0f0;
+  padding: 20px 12px;
+}
+
+/* Brand header */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px 20px 8px;
+  border-bottom: 1px solid #f5f5f5;
+  margin-bottom: 16px;
+}
+
+.sidebar-logo {
+  width: 36px;
+  height: 36px;
+  background: #2b3d5d;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar-brand-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.sidebar-brand-sub {
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.2;
+}
+
+/* Section label */
+.sidebar-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0 8px 8px 8px;
+}
+
+/* Nav items container */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+/* Individual nav item */
+.sidebar-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+  height: 38px;
+  padding: 0 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #555 !important;
+  transition: background 0.15s ease, color 0.15s ease;
+  font-weight: 400;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.sidebar-item:hover {
+  background: #f5f5f5 !important;
+  color: #1a1a1a !important;
+}
+
+.sidebar-item.active {
+  background: #2b3d5d !important;
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+.sidebar-item-icon {
+  flex-shrink: 0;
+  opacity: 0.65;
+}
+
+.sidebar-item.active .sidebar-item-icon {
+  opacity: 1;
+}
+
+.sidebar-item-label {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+
+/* User footer */
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 8px 4px 8px;
+  border-top: 1px solid #f5f5f5;
+  margin-top: 8px;
+}
+
+.sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  background: #2b3d5d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.sidebar-user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.sidebar-user-sub {
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.2;
+}
+
+/* ViewToggle Design System */
+.viewtoggle-container {
+  position: relative;
+  display: flex !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e1e4e8 !important;
+  border-radius: 999px !important;
+  padding: 2px !important;
+  width: fit-content;
+  min-width: 200px;
+  height: 40px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.viewtoggle-slider {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: calc(50% - 2px);
+  background-color: #2b3d5d !important;
+  border-radius: 999px !important;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.viewtoggle-slider.left { transform: translateX(0); }
+.viewtoggle-slider.right { transform: translateX(100%); }
+
+.viewtoggle-btn {
+  position: relative;
+  flex: 1;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  z-index: 2;
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.05em !important;
+  color: #2b3d5d !important;
+  transition: color 0.3s ease;
+  padding: 0 16px;
+}
+
+.viewtoggle-btn.active {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* ── Football Pitch (Formation Board) ── */
+.pitch {
+  position: relative;
+  width: 340px;
+  height: 430px;
+  background: #2e9e57;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.goal-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.players {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 2;
+}
+
+.circle {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+  transform: translate(-50%, -50%);
+  border: none;
+  padding: 0;
+}
+
+.circle:hover  { transform: translate(-50%, -50%) scale(1.1); }
+.circle:active { transform: translate(-50%, -50%) scale(0.95); }
+
+.circle[data-state="0"] { background: #217a42; }
+.circle[data-state="1"] { background: #7ed957; z-index: 10; }
+.circle[data-state="2"] { background: #f5d020; z-index: 10; }
+.circle[data-state="3"] { background: #f5a623; z-index: 10; }
+.circle[data-state="4"] { background: #f0665a; z-index: 10; }
+
+/* ── Custom Scrollbar ── */
+.custom-scrollbar::-webkit-scrollbar {
   width: 6px;
-  height: 6px;
 }
 
-.minimal-scrollbar::-webkit-scrollbar-track {
+.custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.minimal-scrollbar::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
   border-radius: 10px;
+  border: 2px solid #FFFFFF;
+  background-clip: padding-box;
 }
 
-.minimal-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #cbd5e1;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
 }
